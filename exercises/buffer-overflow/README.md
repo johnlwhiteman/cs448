@@ -1,6 +1,6 @@
 ## Setup
 
-`$ ./no-aslr`
+`$ ../../no-aslr`
 
 `$ make clean`
 
@@ -26,7 +26,7 @@ How many a's does it take to get a segmentation fault (core dump)?
 
 ## Cleanup
 
-`$ ./yes-aslr`
+`$ ../../yes-aslr`
 
 `$ make clean`
 
