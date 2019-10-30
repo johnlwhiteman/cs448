@@ -2,15 +2,17 @@
 #include <string.h>
 
 int main(int argc, char **argv) {
-  
-    char buffy[3];
- 
+
+    int isAuthenticatedFlag = 0;
+    char buffer[5];
+
     if (argc < 2) {
-        printf("Please add a string\n");
+        printf("Please enter some text\n");
         return 1;
-    } 
-    
-    strcpy(buffy, argv[1]);
+    }
+
+    strcpy(buffer, argv[1]);
+
+    printf("isAuthenticatedFlag: %d\n", isAuthenticatedFlag);
     return 0;
 }
-
