@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+./clean
+export IMG_PATH=grace-hopper.jpg
+./aox.py $IMG_PATH 
+eog $IMG_PATH AND-${IMG_PATH} OR-${IMG_PATH} XOR-${IMG_PATH} & 
