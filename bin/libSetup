@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+function addBashAlias {
+    BASH_RC_PATH=$HOME/.bashrc
+    backupFile "$BASH_RC_PATH"
+    newAlias="alias $1=\"$2\""
+    grep -qF "$newAlias" "$BASH_RC_PATH" || echo "$newAlias" >> "$BASH_RC_PATH"
+    source $BASH_RC_PATH
+}
+
+function addBashPath {
+    BASH_RC_PATH=$HOME/.bashrc
+    backupFile "$BASH_RC_PATH"
+    newPath="export PATH=$1:\$PATH"
+    bash -c "grep -q -F '$newPath' $BASH_RC_PATH || echo '$newPath' >> $BASH_RC_PATH"
+    source $BASH_RC_PATH
+}
+
+function backupFile {
+    if [ ! -f $1.ORIGINAL ]; then
+        cp $1 $1.ORIGINAL
+    fi
+}
+
+function restoreFile {
+    if [ -f $1.ORIGINAL ]; then
+        cp $1.ORIGINAL $1
+    fi
+}
+
+function setupGit {
+    sudo apt-get install git -y
+    git config --global user.name $(whoami)
+    git config --global user.email "<>"
+    git config --global core.editor vim
+}
+
+function setupLinux {
+    pathy=~/.bashrc
+    backupFile "$pathy"
+    tmpy="export PATH=${DIR}:\$PATH"
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    echo -e '[com.canonical.unity-greeter]\nplay-ready-sound = false' \
+    | sudo tee -a /usr/share/glib-2.0/schemas/50_unity-greeter.gschema.override
+    sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+    pathy=/etc/inputrc
+    tmpy="set bell-style none"
+    sudo sed -i 's/# set bell-style none/set bell-style none/' $pathy
+    pathy=~/.inputrc
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    pathy=~/.bash_profile
+    tmpy="setterm -blength 0"
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    ulimit -c unlimited
+}
+
+function setupVim {
+    sudo apt-get install vim -y
+    cat << EOF > /tmp/VIMRC
+filetype plugin indent off
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set vb t_vb=
+set background=dark
+autocmd Filetype c setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype html setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype java setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype json setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype php setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType c,cpp,html,java,javascript,json,php,python,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+EOF
+    mv /tmp/VIMRC ~/.vimrc
+}
+
