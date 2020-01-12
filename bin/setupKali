@@ -4,6 +4,7 @@ source ${DIR}/libSetup
 
 function setupDependencies {
     setupGit
+    setupVim
 }
 
 sudo ls >/dev/null
