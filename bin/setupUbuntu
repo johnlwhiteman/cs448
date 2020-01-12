@@ -13,6 +13,13 @@ function setupAfl {
     rm -fr ./afl
 }
 
+function setupChrome {
+    cd /tmp
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    rm -f google-chrome-stable_current_amd64.deb
+}
+
 function setupDependencies {
     sudo apt-get update
     sudo apt-get install build-essential -y
@@ -23,6 +30,7 @@ function setupDependencies {
     sudo apt-get install net-tools -y
     sudo apt-get install npm -y
     sudo apt-get install wget -y
+    setupChrome
     setupDocker
     setupGit
     setupPython
@@ -54,6 +62,17 @@ function setupDocker {
     docker-compose --version
 }
 
+function setupFuzzGoat {
+    cd $DIR
+    cd ../
+    mkdir -p apps/
+    cd apps/
+    rm -fr fuzzgoat
+    git clone https://github.com/fuzzstati0n/fuzzgoat.git
+    cd ./fuzzgoat
+    make
+}
+
 function setupJuiceShop {
     sudo docker pull bkimminich/juice-shop
 }
@@ -71,3 +90,4 @@ setupLinux
 setupDependencies
 setupJuiceShop
 setupAfl
+setupFuzzGoat
