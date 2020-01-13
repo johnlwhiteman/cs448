@@ -3,8 +3,38 @@ export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 source ${DIR}/libSetup
 
 function setupDependencies {
-    setupGit
-    setupVim
+    apt-get install imagemagick 
+    setupGitKali
+    setupVimKali
+}
+
+function setupGitKali {
+    git config --global user.name $(whoami)
+    git config --global user.email "<>"
+    git config --global core.editor vim
+}
+
+function setupVimKali {
+    cat << EOF > /tmp/VIMRC
+filetype plugin indent off
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set vb t_vb=
+set background=dark
+autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType json setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType c,cpp,html,java,javascript,json,php,python,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+EOF
+    mv /tmp/VIMRC ~/.vimrc
 }
 
 sudo ls >/dev/null
