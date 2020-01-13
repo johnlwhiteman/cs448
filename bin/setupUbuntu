@@ -84,7 +84,7 @@ function setupPython {
     /usr/bin/python3.6 1
     sudo update-alternatives  --set python /usr/bin/python3.6
     sudo apt install python3-pip -y
-    sudo pip3 install lizard -y
+    sudo pip3 install lizard
 }
 
 sudo ls >/dev/null
