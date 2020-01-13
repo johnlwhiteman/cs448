@@ -5,17 +5,39 @@ source ${DIR}/libSetup
 function setupDependencies {
     apt-get install eog -y
     apt-get install imagemagick  -y
-    setupGitKali
-    setupVimKali
+    setupGit
+    setupVim
 }
 
-function setupGitKali {
+function setupGit {
     git config --global user.name $(whoami)
     git config --global user.email "<>"
     git config --global core.editor vim
 }
 
-function setupVimKali {
+function setupOs {
+    pathy=~/.bashrc
+    backupFile "$pathy"
+    tmpy="export PATH=${DIR}:\$PATH"
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    echo -e '[com.canonical.unity-greeter]\nplay-ready-sound = false' \
+    | tee -a /usr/share/glib-2.0/schemas/50_unity-greeter.gschema.override
+    glib-compile-schemas /usr/share/glib-2.0/schemas/
+    pathy=/etc/inputrc
+    tmpy="set bell-style none"
+    sed -i 's/# set bell-style none/set bell-style none/' $pathy
+    pathy=~/.inputrc
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    pathy=~/.bash_profile
+    tmpy="setterm -blength 0"
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+    ulimit -c unlimited
+}
+
+function setupVim {
     cat << EOF > /tmp/VIMRC
 filetype plugin indent off
 set tabstop=4

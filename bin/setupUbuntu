@@ -13,6 +13,9 @@ function setupAfl {
     rm -fr ./afl
 }
 
+sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+
+
 function setupChrome {
     cd /tmp
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -75,8 +78,37 @@ function setupFuzzGoat {
     make
 }
 
+function setupGit {
+    sudo apt-get install git -y
+    git config --global user.name $(whoami)
+    git config --global user.email "<>"
+    git config --global core.editor vim
+}
+
 function setupJuiceShop {
     sudo docker pull bkimminich/juice-shop
+}
+
+function setupOs {
+    pathy=~/.bashrc
+    backupFile "$pathy"
+    tmpy="export PATH=${DIR}:\$PATH"
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    echo -e '[com.canonical.unity-greeter]\nplay-ready-sound = false' \
+    | sudo tee -a /usr/share/glib-2.0/schemas/50_unity-greeter.gschema.override
+    sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+    pathy=/etc/inputrc
+    tmpy="set bell-style none"
+    sudo sed -i 's/# set bell-style none/set bell-style none/' $pathy
+    pathy=~/.inputrc
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    pathy=~/.bash_profile
+    tmpy="setterm -blength 0"
+    touch $pathy
+    grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
+    sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+    ulimit -c unlimited
 }
 
 function setupPython {
@@ -87,8 +119,32 @@ function setupPython {
     sudo pip3 install lizard
 }
 
+function setupVim {
+    sudo apt-get install vim -y
+    cat << EOF > /tmp/VIMRC
+filetype plugin indent off
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set vb t_vb=
+set background=dark
+autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
+autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType html setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType json setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType php setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType c,cpp,html,java,javascript,json,php,python,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
+EOF
+    mv /tmp/VIMRC ~/.vimrc
+}
+
 sudo ls >/dev/null
-setupLinux
+setupOs
 setupDependencies
 setupJuiceShop
 setupAfl
