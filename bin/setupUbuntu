@@ -27,6 +27,7 @@ function setupDependencies {
     sudo apt-get install cloc -y
     sudo apt-get install default-jdk -y
     sudo apt-get install gnuplot -y
+    sudo apt-get install imagemagick -y
     sudo apt-get install net-tools -y
     sudo apt-get install npm -y
     sudo apt-get install wget -y
@@ -35,6 +36,7 @@ function setupDependencies {
     setupGit
     setupPython
     setupVim
+    sudo apt-get autoremove -y
 }
 
 function setupDocker {
