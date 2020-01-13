@@ -3,7 +3,8 @@ export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 source ${DIR}/libSetup
 
 function setupDependencies {
-    apt-get install imagemagick 
+    apt-get install eog -y
+    apt-get install imagemagick  -y
     setupGitKali
     setupVimKali
 }
