@@ -33,7 +33,6 @@ function setupOs {
     tmpy="setterm -blength 0"
     touch $pathy
     grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
-    sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
     ulimit -c unlimited
     addNewLine "dhclient eth0" "/$(whoami)/.bashrc"
     addNewLine "dhclient eth1" "/$(whoami)/.bashrc"
