@@ -35,8 +35,8 @@ function setupOs {
     grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
     sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
     ulimit -c unlimited
-    addNewLine "dhclient eth0" "/home/$(whoami)/.bashrc"
-    addNewLine "dhclient eth1" "/home/$(whoami)/.bashrc"
+    addNewLine "dhclient eth0" "/$(whoami)/.bashrc"
+    addNewLine "dhclient eth1" "/$(whoami)/.bashrc"
 }
 
 function setupVim {
