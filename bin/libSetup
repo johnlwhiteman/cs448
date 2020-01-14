@@ -17,6 +17,12 @@ function addBashPath {
     source $BU_PATH
 }
 
+function addNewLine {
+    line=$1
+    path=$2
+    grep -qF -- "$line" "$path" || echo "$line" >> "$path"
+}
+
 function backupFile {
     if [ ! -f $1.ORIGINAL ]; then
         cp $1 $1.ORIGINAL
@@ -27,7 +33,7 @@ function replaceString {
     src=$1
     tgt=$2 
     path=$3
-    sed -i "s/$1/$2/g" $3 
+    sed -i "s/$src/$tgt/g" $3 
 }
 
 function restoreFile {
