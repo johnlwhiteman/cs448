@@ -2,6 +2,14 @@
 export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 source ${DIR}/libSetup
 
+function createDhClientCron {
+    pathy=/tmp/cronny
+    echo '@reboot /sbin/dhclient eth0' >/tmp/cronny
+    echo '@reboot /sbin/dhclient eth1' >>/tmp/cronny
+    crontab $pathy    
+    rm -f $pathy
+}
+
 function setupDependencies {
     apt-get install eog -y
     apt-get install imagemagick  -y
@@ -34,8 +42,8 @@ function setupOs {
     touch $pathy
     grep -qF "$tmpy" "$pathy" || echo "$tmpy" >> "$pathy"
     ulimit -c unlimited
-    addNewLine "dhclient eth0" "/$(whoami)/.bashrc"
-    addNewLine "dhclient eth1" "/$(whoami)/.bashrc"
+    #addNewLine "dhclient eth0" "/$(whoami)/.bashrc"
+    #addNewLine "dhclient eth1" "/$(whoami)/.bashrc"
 }
 
 function setupVim {
@@ -63,3 +71,5 @@ EOF
 
 setupOs
 setupDependencies
+createDhClientCron
+
