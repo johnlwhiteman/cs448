@@ -120,7 +120,6 @@ if __name__ == "__main__":
                 testDecryption(t)
                 testEncryptionFile(t)
                 testDecryptionFile(t)
-                break
     except IOError as e:
         print("Abort: {0}".format(e))
         sys.exit(1)
