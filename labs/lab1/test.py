@@ -26,7 +26,7 @@ def read(path):
             content = fd.read()
             return content.strip()
     except IOError as e:
-        print("Abort: {0}".format(e))
+        print("Read Failed: {0}".format(e))
         sys.exit(1)
 
 def run(args):
@@ -45,6 +45,14 @@ def run(args):
         sys.exit(1)
     return r
 
+def write(path, content):
+    try:
+        with open(path, "w", encoding="utf-8") as fd:
+            fd.write(content)
+    except IOError as e:
+        print("Write Failed: {0}".format(e))
+        sys.exit(1)
+
 def testEncryption(t):
     r = run("-e -k '{0}' -i '{1}'".format(t.k, t.p))
     if r.out != t.c:
@@ -62,30 +70,42 @@ def testDecryption(t):
     print("Decryption Passed")
 
 def testEncryptionFile(t):
+    write(t.kpath, t.k)
+    write(t.ppath, t.p)
+    #write(t.cpath, t.c)
     r = run("-E -k '{0}' -i '{1}' -o '{2}'".format(
             t.kpath, t.ppath, t.cpath))
+    os.unlink(t.kpath)
+    os.unlink(t.ppath)
     if not os.path.exists(t.cpath):
         print("Encryption File Failed: No {0}".format(
             t.cpath))
         sys.exit(1)
     c = read(t.cpath)
-    if r.out != c:
+    os.unlink(t.cpath)
+    if t.c != c:
         print("Encryption File Failed: {0}".format(r.cmd))
-        print("{0} != {1}".format(r.out, t.c))
+        print("{0} != {1}".format(t.c, c))
         sys.exit(1)
     print("Encryption File Passed")
 
 def testDecryptionFile(t):
+    write(t.kpath, t.k)
+    #write(t.ppath, t.p)
+    write(t.cpath, t.c)
     r = run("-D -k '{0}' -i '{1}' -o '{2}'".format(
             t.kpath, t.cpath, t.ppath))
+    os.unlink(t.kpath)
+    os.unlink(t.cpath)
     if not os.path.exists(t.ppath):
         print("Decryption File Failed: No {0}".format(
             t.ppath))
         sys.exit(1)
     p = read(t.ppath)
-    if r.out != p:
+    os.unlink(t.ppath)
+    if t.p != p:
         print("Decryption File Failed: {0}".format(r.cmd))
-        print("{0} != {1}".format(r.out, t.p))
+        print("{0} != {1}".format(t.p, p))
         sys.exit(1)
     print("Decryption File Passed")
 
@@ -100,6 +120,7 @@ if __name__ == "__main__":
                 testDecryption(t)
                 testEncryptionFile(t)
                 testDecryptionFile(t)
+                break
     except IOError as e:
         print("Abort: {0}".format(e))
         sys.exit(1)
