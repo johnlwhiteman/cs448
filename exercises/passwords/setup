@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+sudo apt-get retext -y
+./cleanup
+wget https://www.tunnelsup.com/images/cmiyc_2012_password_hash_files.tar.bz2
+bzip2 -d *.bz2
+tar -xvf *.tar
+rm -f *.tar
+mv ./cmiyc_* ./corpus

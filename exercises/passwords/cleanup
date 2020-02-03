@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+rm -rf *.bz2 *.tar ./corpus ./cmiyc_* ~/.john ./mypasswords
