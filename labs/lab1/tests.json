@@ -1,5 +1,10 @@
 [
     {
+        "k": "MYKEY",
+        "p": "MYPLAINTEXT",
+        "c": "YMZPYUB3IL5"
+    },
+    {
         "k": "VHUIOP6590QAZC",
         "p": "LETSCOUNT12345",
         "c": "6LD0Q3QISRI3T7"
