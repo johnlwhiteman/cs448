@@ -62,7 +62,7 @@ def testEncryption(t):
     print("Encryption Passed")
 
 def testDecryption(t):
-    r = run("-d -k '{0}' -i '{1}'".format(t.k, t.p))
+    r = run("-d -k '{0}' -i '{1}'".format(t.k, t.c))
     if r.out != t.p:
         print("Decryption Failed: {0}".format(r.cmd))
         print("{0} != {1}".format(r.out, t.p))
