@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import subprocess
 import sys
 from  pprint import pprint
@@ -40,8 +41,9 @@ def run(args):
     r.out = stdout.decode("utf8").strip()
     r.err = stderr.decode("utf8").strip()
     r.ret = p.returncode
-    if r.ret:
-        print("Excution Failed: {0}".format(t.cmd))
+    if r.ret or re.search("Vigenère is a ", r.out): 
+        print(r.out)
+        print(r.err)
         sys.exit(1)
     return r
 
