@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cmp m1.bin m2.bin
+diff m1.bin m2.bin
+sha1sum m1.bin m2.bin
+sha256sum m1.bin m2.bin
+md5sum m1.bin m2.bin
