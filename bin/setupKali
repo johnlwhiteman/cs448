@@ -3,7 +3,7 @@ export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 source ${DIR}/libSetup
 
 function setupChrome {
-    sudo apt-get --fix-broken install
+    sudo apt --fix-broken install
     sudo apt-get install gdebi-core
     cd /tmp
     rm -f /google-chrome-stable_current_amd64.deb
