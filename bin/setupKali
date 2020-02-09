@@ -108,5 +108,6 @@ EOF
     mv /tmp/VIMRC ~/.vimrc
 }
 
+sudo ls >/dev/null
 setupOs
 setupDependencies
