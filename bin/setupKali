@@ -5,13 +5,13 @@ source ${DIR}/libSetup
 function setupChrome {
     sudo apt --fix-broken install -y
     sudo apt-get install gdebi-core -y
-    sudo apt --fix-broken install
+    sudo apt --fix-broken install -y
     cd /tmp
     rm -f /google-chrome-stable_current_amd64.deb
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     sudo dpkg -i google-chrome-stable_current_amd64.deb
     rm -f google-chrome-stable_current_amd64.deb
-    sudo apt --fix-broken install
+    sudo apt --fix-broken install -y
 }
 
 function setupDependencies {
@@ -108,5 +108,6 @@ EOF
     mv /tmp/VIMRC ~/.vimrc
 }
 
-setupOs
-setupDependencies
+setupChrome
+#setupOs
+#setupDependencies
