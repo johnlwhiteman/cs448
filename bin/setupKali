@@ -108,6 +108,5 @@ EOF
     mv /tmp/VIMRC ~/.vimrc
 }
 
-setupChrome
-#setupOs
-#setupDependencies
+setupOs
+setupDependencies
