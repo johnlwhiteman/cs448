@@ -87,7 +87,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set vb t_vb=
-set background=dark
+syntax on
+colorscheme default 
 autocmd FileType make setlocal ts=4 sts=4 sw=4 noexpandtab
 autocmd FileType c setlocal ts=4 sts=4 sw=4 expandtab
 autocmd FileType cpp setlocal ts=4 sts=4 sw=4 expandtab
