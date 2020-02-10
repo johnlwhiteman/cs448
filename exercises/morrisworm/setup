@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+rm -fr ./morris-worm ./src
+git clone https://github.com/arialdomartini/morris-worm.git 
+rm -fr ./morris-worm/.git
+mv ./morris-worm ./src
