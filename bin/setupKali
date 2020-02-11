@@ -21,6 +21,7 @@ function setupDependencies {
     sudo apt-get install cloc -y
     sudo apt-get install curl -y
     sudo apt-get install eog -y
+    sudo apt-get install gedit -y
     sudo apt-get install gnuplot -y
     sudo apt-get install imagemagick -y
     sudo apt-get install net-tools -y
