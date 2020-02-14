@@ -27,6 +27,7 @@ function setupDependencies {
     sudo apt-get install net-tools -y
     sudo apt-get install npm -y
     sudo apt-get install openjdk-11-jdk-headless -y
+    sudo apt-get install p7zip-full -y
     sudo apt-get install retext -y
     sudo apt-get install wget -y
     setupChrome
