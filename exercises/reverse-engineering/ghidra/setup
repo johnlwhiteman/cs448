@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#https://www.ghidra.ninja/samples/wannacry.zip
+
+rm -fr ./ghidra* ./startGhidra
+sudo apt-get install openjdk-11-jdk-headless -y
+wget https://ghidra-sre.org/ghidra_9.1.1_PUBLIC_20191218.zip
+unzip ghidra*.zip
+rm -f *.zip
+mv ./ghidra* ./ghidra
+ln -s ./ghidra/ghidraRun startGhidra
+
