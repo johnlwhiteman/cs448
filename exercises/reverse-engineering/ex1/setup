@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+rm -fr malware-samples
+git clone https://github.com/fabrimagic72/malware-samples.git
+cd ./malware-samples/EternalRocks/
+7z x cf8533849ee5e82023ad7adbdbd6543cb6db596c53048b1a0c00b3643a72db30.zip
+ls *
+#ls cf8533849ee5e82023ad7adbdbd6543cb6db596c53048b1a0c00b3643a72db30.bin 
+firefox https://www.virustotal.com/#/home/upload &
