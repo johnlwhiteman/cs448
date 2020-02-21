@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+#sudo docker container prune -f
+sudo docker rm -f metasploitable2
+sudo docker pull tleemcjr/metasploitable2 
+sudo docker run --name metasploitable2 -it tleemcjr/metasploitable2:latest sh -c "/bin/services.sh && bash"
