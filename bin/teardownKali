@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+export DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+source ${DIR}/libSetup
+
+function teardownChrome {
+    sudo apt --fix-broken install -y
+    sudo apt-get purge google-chrome-stable -y
+    sudo apt --fix-broken install -y
+    sudo apt autoremove -y
+}
+
+sudo ls >/dev/null
+teardownChrome
+

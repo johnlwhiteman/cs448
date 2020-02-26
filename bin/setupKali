@@ -30,7 +30,7 @@ function setupDependencies {
     sudo apt-get install p7zip-full -y
     sudo apt-get install retext -y
     sudo apt-get install wget -y
-    setupChrome
+    #setupChrome
     setupDocker
     setupGit
     setupVim

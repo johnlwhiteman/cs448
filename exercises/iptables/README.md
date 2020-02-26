@@ -1,3 +1,6 @@
+# Iptables Exercise
+
+
 Start Kali2020 VM
 
 Open a terminal
@@ -14,7 +17,7 @@ $ ifconfig eth0 # Mine is 192.168.192.128
 
 Note that both IPs should start with 192.168.192.* AND if not then check on Kali the ip for eth1
 
-**[@ Kali2020]**
+**@ Kali2020**
 ```
 $ cd ~/cs448-2020/exercises
 $ git pull
@@ -49,7 +52,7 @@ PORT     STATE SERVICE
 8180/tcp open  unknown
 ```
 
-**[@ Kali2020]**
+**@ Kali2020**
 
 Let's try telnet from Kali to Metasploitable
 ```
@@ -58,23 +61,27 @@ $ telnet 192.168.192.128 # might take up to 30-60 seconds to show prompt```
 Enter credentials as msfadmin/msfadmin
 
 If you maded it this far then telnet appears to working
-
 ```
 $ exit
 ```
 
-**[@ Metasploitable2]**
+**@ Metasploitable2**
 
 Let's configure our firewall to filter network traffic from using telnet
+
+```
 $ sudo iptables -A INPUT -p tcp --dport 23 -j REJECT
 $ sudo iptables -A OUTPUT -p tcp --sport 23 -j REJECT
 $ sudo iptables -t filter -L
+```
 
-
-**[@ Kali2020]**
+**@ Kali2020**
 
 Let's see if it is filtered
+
+```
 $ map -sV -p 23 192.168.192.128
+```
 
 You should see output like this ...
 
@@ -90,17 +97,20 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 23.34 seconds
 
 
-**[@ Metasploitable2]**
+**@ Metasploitable2**
 
 Now let's configure our firewall to completely drop the packet without sending a response
+```
 $ sudo iptables -A INPUT -p tcp --dport 23 -j DROP
 $ sudo iptables -A OUTPUT -p tcp --sport 23 -j DROP
 $ sudo iptables -t filter -L
+```
 
-
-**[@ Kali2020]**
+**@ Kali2020**
 Let's see if it closed or filtered
+```
 $ map -sV -p 23 192.168.192.128
+```
 
 You should see output like this ...
 
@@ -166,9 +176,6 @@ A client issues a SYN and the server replies with RST then the port is CLOSE
 
 
 A client issues a SYN and the server replies with ICMP then it means the port is being FILTERED or blocked by a firewall
-
-
-
 
 
 
