@@ -1,14 +1,25 @@
 .PHONY: all clean
 
+all: stack1 stack2 stack3 stack4
 
-all: s1 s2
-
-
-s1: stack.c
+stack1: stack1.c
 	gcc $< -o $@
 
-s2: stack.c
+
+stack2: stack2.c
+	gcc $< -o $@
+
+
+stack3: stack3.c
+	gcc $< -o $@
+
+
+stack4: stack4.c
+	gcc $< -o $@
+
+
+stack: stack.c
 	gcc -O0 -fno-stack-protector -z execstack $< -o $@
 
 clean:
-	rm -f s1 s2
+	rm -f stack1 stack2 stack3 stack4

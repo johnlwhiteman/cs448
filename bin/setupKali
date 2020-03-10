@@ -17,6 +17,7 @@ function setupChrome {
 function setupDependencies {
     sudo apt-get update
     sudo apt-get install build-essential -y
+    suod apt-get install binutils -y
     sudo apt-get install bzip2 -y
     sudo apt-get install cloc -y
     sudo apt-get install curl -y
@@ -29,6 +30,7 @@ function setupDependencies {
     sudo apt-get install openjdk-11-jdk-headless -y
     sudo apt-get install p7zip-full -y
     sudo apt-get install retext -y
+    sudo apt-get install volatility -y
     sudo apt-get install wget -y
     #setupChrome
     setupDocker
