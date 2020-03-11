@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo docker system prune -f 
+sudo docker build -t shellcode . 
+sudo docker run -t -i shellcode /bin/bash 
