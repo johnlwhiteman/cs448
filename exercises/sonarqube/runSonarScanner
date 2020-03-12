@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+export SONAR_HOST_URL=http://localhost:9000
+export SRC_PATH=$(pwd)/bad-human-code
+cd $SRC_PATH 
+pwd
+ls
+sudo docker run -ti -v $(pwd):/usr/src --link sonarqube newtmitch/sonar-scanner

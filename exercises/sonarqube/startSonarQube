@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-sudo docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube && sleep 30 && firefox localhost:8000
+sudo docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube && sleep 30 && firefox localhost:9000 &
