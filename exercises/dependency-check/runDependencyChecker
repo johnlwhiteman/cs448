@@ -6,8 +6,8 @@ REPORT_DIRECTORY="$OWASPDC_DIRECTORY/reports"
 
 rm -fr ./bad-human-code
 cp -r  ../sonarqube/bad-human-code ./
-rm -fr ../bad-human-code/.scannerwork
-rm -fr ../bad-human-code/.sonar
+rm -fr ./bad-human-code/.scannerwork
+rm -fr ./bad-human-code/.sonar
 
 if [ ! -d "$DATA_DIRECTORY" ]; then
     echo "Initially creating persistent directories"
@@ -32,3 +32,5 @@ sudo docker run --rm \
     --out /report
     # Use suppression like this: (/src == $pwd)
     # --suppression "/src/security/dependency-check-suppression.xml"
+
+firefox ./reports/dependency-check-report.html &
