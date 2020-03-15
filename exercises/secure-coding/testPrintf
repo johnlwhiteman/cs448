@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
-make all 
+echo ""
 
 echo "./printf AAAAAAAAAAAAA.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x"
 ./printf "AAAAAAAAAAAAA.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x"
 
 echo ""
-
-echo "------------------------"
-
-echo "./printfX AAAAAAAAAAAAA.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x"
-./printfX "AAAAAAAAAAAAA.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x.%x"
-
