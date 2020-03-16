@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo docker image rm juiceshop
+sudo docker container rm juiceshop
+sudo docker container rm bkimminich/juice-shop

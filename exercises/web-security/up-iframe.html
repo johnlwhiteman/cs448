@@ -1,0 +1,15 @@
+
+<html>
+<head>
+<title>A SOP Demo</title>
+</head>
+<body>
+<iframe id="hacker" src="https://up.edu/" width="555" height="555"></iframe>
+<script>
+    var hackerFrame = document.getElementById("hacker");
+    hackerFrame.addEventListener("load", function() {
+        document.getElementById("hacker").contentWindow.document.getElementById("fb-root").click();
+    });
+</script>
+</body>
+</html>
