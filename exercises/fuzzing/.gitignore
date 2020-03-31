@@ -1,0 +1,3 @@
+./fuzzgoat
+./afl
+!.gitignore
