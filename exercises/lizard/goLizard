@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+sudo docker build -t lizard . 
+sudo docker run -t -i lizard /bin/bash

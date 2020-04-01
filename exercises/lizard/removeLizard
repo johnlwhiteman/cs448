@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+IMAGES=$(sudo docker images | grep 'lizard')
+if [ ! -z "$IMAGES" ]; then
+    sudo docker rmi $(sudo docker images -q lizard)
+fi
+

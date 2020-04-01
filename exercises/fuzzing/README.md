@@ -1,5 +1,5 @@
 # Dependencies
-* sudo apt-get install gnuplot -y
+* $ sudo apt-get install gnuplot -y
 
 # Environment Setup
 * $ sudo sh -c 'echo core >/proc/sys/kernel/core_pattern'   # Support core dumps 

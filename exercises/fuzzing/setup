@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo apt-get install gnuplot -y
+sudo sh -c 'echo core >/proc/sys/kernel/core_pattern' # Support core dumps
+ulimit -c unlimited # Core can be unlimited size 
