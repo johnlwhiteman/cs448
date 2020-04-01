@@ -1,3 +1,4 @@
-./fuzzgoat
-./afl
+*
 !.gitignore
+!setup
+!README.md
