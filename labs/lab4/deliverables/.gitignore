@@ -1,0 +1,6 @@
+*
+!.gitignore
+!Makefile
+!key.txt
+!seed.txt
+!setupAFL
