@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sudo docker run -p 80:8080 --name mewebsite -v $(pwd)/website:/var/www/html trafex/alpine-nginx-php7

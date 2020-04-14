@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+sudo docker exec mewebsite nginx -c /etc/nginx/nginx-tls.conf -s reload

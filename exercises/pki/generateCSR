@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# openssl – activates the OpenSSL software
+# req – indicates that we want a CSR
+# –new –newkey – generate a new key
+# rsa:2048 – generate a 2048-bit RSA mathematical key
+# –nodes – no DES, meaning do not encrypt the private key in a PKCS#12 file
+# –keyout – indicates the domain you’re generating a key for
+# –out – specifies the name of the file your CSR will be saved as
+# PKCS#12 ...archive file format
+
+echo openssl req -new -newkey rsa:2048 -keyout private.key -out my.csr
+
+openssl req -new -newkey rsa:2048 -keyout private.key -out my.csr
+

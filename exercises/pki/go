@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+sudo docker system prune -f
+sudo docker build -t mewebsite . 
+#sudo docker run -t -i -p 80:8080 -v $(pwd)/website/docroot:/var/www/html mewebsite /bin/bash
+sudo docker run -t -i -p 80:8080 \
+    -v $(pwd)/website/etc/ssl/private:/etc/ssl/private \
+    -v $(pwd)/website/etc/ssl/certs:/etc/ssl/certs \
+    -v $(pwd)/website/etc/nginx/snippets:/etc/nginx/snippets \
+    --name mewebsite mewebsite
+#sudo docker run -t -i -p 80:8080 mewebsite /bin/bash

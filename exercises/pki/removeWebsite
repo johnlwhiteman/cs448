@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+./stopWebsite
+IMAGES=$(sudo docker images | grep 'alpine-nginx-php7')
+if [ ! -z "$IMAGES" ]; then
+    sudo docker rmi -f $(sudo docker images -q trafex/alpine-nginx-php7)
+fi
